@@ -1,8 +1,5 @@
-#from geopy import Nominatim
-import plotly_express as px
 from assets.fetch_data import *
 import plotly.express as px
-import numpy as np
 
 import dash
 import dash_html_components as html
