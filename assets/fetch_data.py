@@ -1,19 +1,23 @@
 import requests
 import json
 import pandas as pd
+from boto.s3.connection import S3Connection
+import os
 
 
+# def get_keys(path):
+#     #  retrieve your key/token from json file
+#     with open(path) as f:
+#         return json.load(f)
+#
+#
+# your_path = "/Users/aaronlee/Desktop/toa_login.json"  # Make a json file that stores your key
+# keys = get_keys(your_path)
+#
+# api_key = keys['key']
 
-def get_keys(path):
-    #  retrieve your key/token from json file
-    with open(path) as f:
-        return json.load(f)
+api_key = S3Connection(os.environ['KEY'])
 
-
-your_path = "/Users/aaronlee/Desktop/toa_login.json"  # Make a json file that stores your key
-keys = get_keys(your_path)
-
-api_key = keys['key']
 
 def get_active_teams(year):
     '''fetch a list of active teams for current year (or other)'''
