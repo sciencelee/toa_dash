@@ -4,3 +4,4 @@ plotly-express
 pandas~=1.1.5
 requests~=2.25.1
 gunicorn
+boto~=2.49.0
