@@ -62,7 +62,7 @@ fig = px.scatter_geo(active_usa,
                      opacity=0.7,
                     )
 
-fig.update_layout(mapbox_style="open-street-map",)
+#fig.update_layout(mapbox_style="open-street-map",)
 
 fig.update_layout(
         title_text = 'FTC Teams by City (USA only)',
@@ -71,7 +71,6 @@ fig.update_layout(
             scope = 'usa',
             landcolor = 'rgb(150, 150, 150)',
         ),
-        #margin = dict(t=0, b=0, l=0, r=0),
     )
 
 
@@ -91,11 +90,8 @@ app.layout = html.Div([  # one big div for page
                     ], style = {'height': '700'})
 
 
-
-
-
-if __name__ == '__main__':
-    app.run_server(debug=False)
+# if __name__ == '__main__':
+#     app.run_server(debug=False)
 
 
 
