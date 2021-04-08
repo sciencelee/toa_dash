@@ -1,5 +1,6 @@
-dash
+dash~=1.18.1
 plotly
+plotly-express
 pandas
 requests~=2.25.1
 gunicorn

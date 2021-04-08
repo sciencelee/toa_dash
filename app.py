@@ -90,8 +90,8 @@ app.layout = html.Div([  # one big div for page
                     ], style = {'height': '700'})
 
 
-# if __name__ == '__main__':
-#     app.run_server(debug=False)
+if __name__ == '__main__':
+    app.run_server(debug=False)
 
 
 
