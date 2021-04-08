@@ -16,8 +16,8 @@ import os
 #
 # api_key = keys['key']
 
-s3 = S3Connection(os.environ['KEY'])
-api_key = os.getenv('KEY')
+s3 = S3Connection(os.environ['SECRET'])
+api_key = os.getenv('SECRET')
 
 
 def get_active_teams(year):
