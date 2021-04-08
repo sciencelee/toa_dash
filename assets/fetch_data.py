@@ -1,7 +1,6 @@
 import requests
 import json
 import pandas as pd
-from boto.s3.connection import S3Connection
 import os
 
 
@@ -16,9 +15,7 @@ import os
 #
 # api_key = keys['key']
 
-s3 = S3Connection(os.environ['SECRET'])
-api_key = os.getenv('SECRET')
-
+api_key = str(os.environ.get("SECRET"))
 
 def get_active_teams(year):
     '''fetch a list of active teams for current year (or other)'''
