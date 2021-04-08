@@ -1,0 +1,43 @@
+
+
+
+.flex-container {
+    display: flex;
+    /*border: 2px dashed red; */
+}
+
+
+
+.flex-child {
+    flex: 1;
+
+    /*border: 2px solid black;*/
+    padding:5px;
+}
+
+.flex2 {
+    flex: 2;
+}
+
+
+tr {
+    font-size: 1.3vw;
+}
+
+.tinymap{
+    border: 2px solid black;
+}
+
+table{
+    margin-left:20px;
+}
+
+
+
+#mapstyle-val {
+    width:200px;
+}
+
+#timeframe-val {
+    width:200px;
+}
