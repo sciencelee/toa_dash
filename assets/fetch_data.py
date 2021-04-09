@@ -2,7 +2,9 @@ import requests
 import json
 import pandas as pd
 import os
+from dotenv import load_dotenv
 
+load_dotenv()  # take environment variables from .env.
 
 # def get_keys(path):
 #     #  retrieve your key/token from json file
@@ -10,12 +12,14 @@ import os
 #         return json.load(f)
 #
 #
-# your_path = "/Users/aaronlee/Desktop/toa_login.json"  # Make a json file that stores your key
-# keys = get_keys(your_path)
-#
-# api_key = keys['key']
+# if local:
+#     your_path = "/Users/aaronlee/Desktop/toa_login.json"  # Make a json file that stores your key
+#     keys = get_keys(your_path)
+#     api_key = keys['key']
+# else:
 
 api_key = str(os.environ.get("SECRET"))
+
 
 def get_active_teams(year):
     '''fetch a list of active teams for current year (or other)'''
