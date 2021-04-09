@@ -4,19 +4,7 @@ import pandas as pd
 import os
 from dotenv import load_dotenv
 
-load_dotenv()  # take environment variables from .env.
-
-# def get_keys(path):
-#     #  retrieve your key/token from json file
-#     with open(path) as f:
-#         return json.load(f)
-#
-#
-# if local:
-#     your_path = "/Users/aaronlee/Desktop/toa_login.json"  # Make a json file that stores your key
-#     keys = get_keys(your_path)
-#     api_key = keys['key']
-# else:
+#load_dotenv()  # take environment variables from .env.
 
 api_key = str(os.environ.get("SECRET"))
 
