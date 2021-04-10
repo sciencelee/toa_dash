@@ -132,23 +132,21 @@ server = app.server
 app.layout = html.Div(
     [  # one big div for page
         html.Div(id='state-value', style={'display': 'none'}, children='NA'), # place to store my state value
-
-
+        html.Div([
+            html.Button('International', id='country', n_clicks=0),
+            html.Button('Teams by State', id='state', n_clicks=0),
+            html.Button('Teams by City', id='city', n_clicks=0)]
+            ),
         html.Div([   # Big middle block split in two
             html.Div([  # This is my left half div
-                    html.Div([
-                                html.Button('International', id='country', n_clicks=0),
-                                html.Button('Teams by State', id='state', n_clicks=0),
-                                html.Button('Teams by City', id='city', n_clicks=0),]
-                                ),
                     html.Div(id='stats', children="select a state from map"),
-                    ], className="flex-child left flex3",),
+                    ], className="flex-child left flex1",),
             html.Div([
                         html.Div(id='map', # this is my div that contains my map.  look to css to change size etc.
                             className='my-graph',
                             children=html.Div(dcc.Graph(figure=fig)),
                             ),
-                    ], className="flex-child right flex5",   # flex changes width of map
+                    ], className="flex-child right flex2",   # flex changes width of map
                     ),
                 ], className='flex-container'),
         ], style = {'height': '700'})
