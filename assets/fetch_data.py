@@ -2,11 +2,12 @@ import requests
 import json
 import pandas as pd
 import os
-#from dotenv import load_dotenv
+from dotenv import load_dotenv
 
 #from boto.s3.connection import S3Connection
 
-#load_dotenv()  # take environment variables from .env.
+load_dotenv()  # take environment variables from .env.
+
 
 #s3 = S3Connection(os.environ['SECRET'])
 api_key = str(os.environ.get("SECRET"))
@@ -60,6 +61,8 @@ def query_team(team):
 
 
 active_teams = get_active_teams(2021)  # 2021 means 2020-2021
+matches = pd.read_csv('assets/matches.csv')
+
 
 if __name__ == "__main__":
     active_teams = get_active_teams(2021)  # 2021 means 2020-2021
