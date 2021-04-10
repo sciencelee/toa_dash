@@ -130,7 +130,7 @@ server = app.server
 # HTML Layout for my app in Dash format
 app.layout = html.Div(
     [  # one big div for page
-        html.Div(id='state-value', children='IL'), # place to store my state value
+        html.Div(id='state-value', style={'display': 'none'}, children='NA'), # place to store my state value
         html.Div([
             html.Button('Teams by Country', id='country', n_clicks=0),
             html.Button('Teams by State', id='state', n_clicks=0),
