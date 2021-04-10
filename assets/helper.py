@@ -4,7 +4,7 @@ def format_me(df, col):
     my_list = []
     for i in range(len(df)):
         row = df.iloc[i, :]
-        my_list.append('{}pt - Team {} ({}, {}, {})'.format(row[col], row['team'], row['team_name'], row['city'], row['state_prov']))
+        my_list.append('{}pts - Team {} ({}, {}, {})'.format(row[col], row['team'], row['team_name'], row['city'], row['state_prov']))
     return my_list
 
 def top_state_stat(df, state, col, top=1):
@@ -23,7 +23,7 @@ def top_state_stat(df, state, col, top=1):
         tie = len(ties.team.unique())
         teams = list(ties.team.unique())
         if tie > 1:
-            text = ['{}pts {} way tie {}'.format(top_df[col].max(), tie, teams)]
+            text = ['{}pts - {} way tie {}'.format(top_df[col].max(), tie, teams)]
 
     return text
 
