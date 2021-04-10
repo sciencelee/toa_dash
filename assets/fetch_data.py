@@ -4,8 +4,8 @@ import pandas as pd
 import os
 
 # next two lines for local env to function (comment out before commit)
-#from dotenv import load_dotenv
-#load_dotenv()  # take environment variables from .env.
+from dotenv import load_dotenv
+load_dotenv()  # take environment variables from .env.
 
 api_key = str(os.environ.get("SECRET"))
 

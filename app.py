@@ -272,10 +272,14 @@ def display_stats(state):
     tele = top_state_stat(matches, state, 'red_tele_score')
     end = top_state_stat(matches, state, 'red_end_score')
     state_long = abbr[abbr['Abbreviation']==state]['State'].values[0].upper()
+    match_total = n_matches(matches, state)
 
     # Is there a Jinja way to do this return in Dash????
-    return html.Div([html.H3(state_long),
-                    html.P([html.B('TOP 5 SCORES'),
+    return html.Div([(html.H3(state_long)),
+                    html.P([html.B('{} matches played this season'.format(match_total)),
+                            html.Br(),
+                            html.Br(),
+                            html.B('TOP 5 SCORES'),
                            html.Br(),
                            top10[0],
                            html.Br(),
