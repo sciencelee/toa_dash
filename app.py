@@ -149,7 +149,7 @@ app.layout = html.Div(
                     ], className="flex-child right flex2",   # flex changes width of map
                     ),
                 ], className='flex-container'),
-        ], style = {'height': '700'})
+        ], style = {'height': '800'})
 
 
 
