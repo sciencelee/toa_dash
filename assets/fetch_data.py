@@ -2,14 +2,11 @@ import requests
 import json
 import pandas as pd
 import os
-from dotenv import load_dotenv
 
-#from boto.s3.connection import S3Connection
+# next two lines for local env to function (comment out before commit)
+#from dotenv import load_dotenv
+#load_dotenv()  # take environment variables from .env.
 
-load_dotenv()  # take environment variables from .env.
-
-
-#s3 = S3Connection(os.environ['SECRET'])
 api_key = str(os.environ.get("SECRET"))
 
 
