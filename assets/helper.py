@@ -10,11 +10,15 @@ def format_me(df, col):
 def top_state_stat(df, state, col, top=1):
     #print('/{}/'.format(state))
     #print(df['state_prov'].unique())
-    top_df = df[df['state_prov']==state].sort_values(col, ascending=False)[['team', 'team_name', 'city', 'state_prov', 'country', col]][:top]
+    if state not in df['country'].unique():
+        top_df = df[df['state_prov']==state].sort_values(col, ascending=False)[['team', 'team_name', 'city', 'state_prov', 'country', col]][:top]
+    else:
+        top_df = df[df['country']==state].sort_values(col, ascending=False)[['team', 'team_name', 'city', 'state_prov', 'country', col]][:top]
+
     text = format_me(top_df, col)
 
     if len(text)==0:
-        text.append('No matches played this season.')  # Ugh.  COVID
+        text.append('No matches on record.')  # Ugh.  COVID
         for i in range(top):
             text.append('')
 
@@ -27,7 +31,13 @@ def top_state_stat(df, state, col, top=1):
 
     return text
 
+
+
 def n_matches(df, state):
-    n = len(df[df['state_prov']==state])
+    # could be state or country passed depending on map
+    if state in df['state_prov'].unique():
+        n = len(df[df['state_prov']==state])
+    else:
+        n= len(df[df['country']==state])
     return n
 

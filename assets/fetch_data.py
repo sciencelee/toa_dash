@@ -60,6 +60,14 @@ def query_team(team):
 active_teams = get_active_teams(2021)  # 2021 means 2020-2021
 matches = pd.read_csv('assets/matches.csv')
 
+matches = matches[~matches['event_key'].isin(['2021-NYEXC-NFERS',
+                                              '2021-NJ-NFCWL2',
+                                              '2021-AZ-AFCCS',
+                                              '2021-FL-FFALS',
+                                              '2021-CA-SFSR2', # bad auto score
+                                              ])]
+matches['team'] = matches['match_key'].apply(lambda x: x[x.rfind('-')+1:])
+
 
 if __name__ == "__main__":
     active_teams = get_active_teams(2021)  # 2021 means 2020-2021

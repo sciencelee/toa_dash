@@ -24,6 +24,8 @@ zip_codes = pd.read_csv('assets/us-zip-code-latitude-and-longitude.csv', delimit
 zip_codes['Zip'] = zip_codes['Zip'].apply(lambda x: '{:05}'.format(x)) # make them uniform 5 digit strings
 zip_codes_crunch = zip_codes.groupby(['State', 'City']).mean() # no need for zips, just need lat/lon of cities
 
+
+### ACITVE_USA ONLY FOR CITY MAP
 # get all active usa teams - origniates from fetch_data import
 active_usa = active_teams[active_teams['country']=="USA"]
 
@@ -132,6 +134,8 @@ server = app.server
 app.layout = html.Div(
     [  # one big div for page
         html.Div(id='state-value', style={'display': 'none'}, children='NA'), # place to store my state value
+        html.Div(id='country-value', style={'display': 'none'}, children='NA'),  # place to store my state value
+
         html.Div([
             html.Button('International', id='country', n_clicks=0),
             html.Button('Teams by State', id='state', n_clicks=0),
@@ -148,7 +152,7 @@ app.layout = html.Div(
                             ),
                     ], className="flex-child right flex2",   # flex changes width of map
                     ),
-                ], className='flex-container'),
+                ], className='flex-container', style = {'height': '800'}),
         ], style = {'height': '800'})
 
 
@@ -175,6 +179,7 @@ def change_map(bt1, bt2, bt3):
                              lon='Longitude',
                              color="total_teams",
                              hover_name="header",
+                             custom_data=['state_prov'],
                              hover_data={'teams': True,
                                          'Latitude': False, 'Longitude': False},
                              size='total_teams',
@@ -193,12 +198,15 @@ def change_map(bt1, bt2, bt3):
                 scope='usa',
                 landcolor='rgb(150, 150, 150)',
             ),
+            dragmode=False,
+            margin={"r": 0, "t": 0, "l": 0, "b": 0},
+
         )
 
-        return html.Div(dcc.Graph(figure=fig, style={"height": 700}))
+        return html.Div(dcc.Graph(figure=fig, id='mappy', style={"height": 500}))
 
     elif 'state' in changed_id:
-        plot_active = active_teams.groupby(['state_prov']).count()[['team_key', 'zip_code', 'team_name_short']].reset_index()
+        plot_active = active_teams.groupby(['country', 'state_prov']).count()[['team_key', 'zip_code', 'team_name_short']].reset_index()
         plot_active['State'] = plot_active['state_prov']
         plot_active['total_teams'] = plot_active['team_key']
         fig = px.choropleth(data_frame=plot_active,
@@ -210,18 +218,18 @@ def change_map(bt1, bt2, bt3):
                             hover_data={'total_teams': True,
                                         'State': False, },
                             color_continuous_scale='Plotly3',
-                            scope="usa")
+                            scope="usa",)
 
         fig.update_layout(
+            autosize=True,
             margin={"r": 0, "t": 0, "l": 0, "b": 0},
             showlegend=False,
             coloraxis_showscale=False,
             title_text='Active FTC Teams by State',
-            coloraxis_colorbar=dict(
-                title="Active Teams",
-            )
+            coloraxis_colorbar=dict(title="Active Teams"),
+            dragmode=False,
         )
-        return html.Div(dcc.Graph(figure=fig, id='mappy', style={"height": 700}))
+        return html.Div(dcc.Graph(figure=fig, id='mappy', style={"height": 500}))
 
     elif 'country' in changed_id:
 
@@ -237,6 +245,7 @@ def change_map(bt1, bt2, bt3):
                             locations='country',
                             locationmode='country names',
                             color='Total Teams',
+                            custom_data=['country'],
                             # hover_name='team_key',
                             # hover_data={'team_key':True,},
                             color_continuous_scale='Plasma',
@@ -251,9 +260,11 @@ def change_map(bt1, bt2, bt3):
             ),
             showlegend=False,
             title_text='Active FTC Teams Internationally ({} countries)'.format(len(plot_me)),
+            dragmode=False,
+            margin={"r": 0, "t": 0, "l": 0, "b": 0}
         )
 
-        return html.Div(dcc.Graph(figure=fig, style={"height": 700}))
+        return html.Div(dcc.Graph(figure=fig, id='mappy', style={"height": 500}))
 
 
 
@@ -269,6 +280,8 @@ def write_state(clickData):
     return state
 
 
+
+
 # CALLBACK DISPLAYS STATS FOR CHOSEN STATE
 @app.callback(Output('stats', 'children'),  # output goes to stats display
                 Input('state-value', 'children'))  # need the state in order to do calculations
@@ -277,7 +290,10 @@ def display_stats(state):
     auto = top_state_stat(matches, state, 'red_auto_score',)
     tele = top_state_stat(matches, state, 'red_tele_score')
     end = top_state_stat(matches, state, 'red_end_score')
-    state_long = abbr[abbr['Abbreviation']==state]['State'].values[0].upper()
+    try:
+        state_long = abbr[abbr['Abbreviation']==state]['State'].values[0].upper()
+    except:
+        state_long = state.upper()
     match_total = n_matches(matches, state)
 
     # Is there a Jinja way to do this return in Dash????
@@ -311,7 +327,7 @@ def display_stats(state):
                            html.B('TOP ENDGAME SCORE'),
                            html.Br(),
                            end[0],
-                           ]),
+                           ], style={'font-size': '0.9vw'}),
                     ])
 
 
