@@ -113,7 +113,7 @@ fig.update_layout(
     coloraxis_colorbar=dict(
         title="Teams per Country",
     ),
-    title_text='FIRST International Presence ({} countries)'.format(len(plot_me)),
+    #title_text='FIRST International Presence ({} countries)'.format(len(plot_me)),
 )
 
 
@@ -191,7 +191,7 @@ def change_map(bt1, bt2, bt3):
         # fig.update_layout(mapbox_style="open-street-map",)
 
         fig.update_layout(
-            title_text='Active FTC Teams by City',
+            #title_text='Active FTC Teams by City',
             showlegend=False,
             coloraxis_showscale=False,
             geo=dict(
@@ -225,7 +225,7 @@ def change_map(bt1, bt2, bt3):
             margin={"r": 0, "t": 0, "l": 0, "b": 0},
             showlegend=False,
             coloraxis_showscale=False,
-            title_text='Active FTC Teams by State',
+            #title_text='Active FTC Teams by State',
             coloraxis_colorbar=dict(title="Active Teams"),
             dragmode=False,
         )
@@ -259,7 +259,7 @@ def change_map(bt1, bt2, bt3):
                 title="Teams per Country",
             ),
             showlegend=False,
-            title_text='Active FTC Teams Internationally ({} countries)'.format(len(plot_me)),
+            #title_text='Active FTC Teams Internationally ({} countries)'.format(len(plot_me)),
             dragmode=False,
             margin={"r": 0, "t": 0, "l": 0, "b": 0}
         )
@@ -298,7 +298,7 @@ def display_stats(state):
 
     # Is there a Jinja way to do this return in Dash????
     return html.Div([(html.H3(state_long)),
-                    html.P([html.B('{} matches played this season'.format(match_total)),
+                    html.P([html.B('{} recorded matches this season'.format(match_total)),
                             html.Br(),
                             html.Br(),
                             html.B('TOP 5 SCORES'),
