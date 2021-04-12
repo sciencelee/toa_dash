@@ -119,7 +119,7 @@ app.layout = html.Div(
     [  # one big div for page
         html.Div(id='state-value', style={'display': 'none'}, children='IL'), # place to store my state value
         html.Div(id='country-value', style={'display': 'none'}, children='USA'),  # place to store my state value
-
+        html.Img(src='assets/ftc-app.png', style={'display':'none'}),
         html.Div([
             html.Button('International', id='country', n_clicks=0, style=white_button_style),
             html.Button('Teams by State', id='state', n_clicks=0, style=gray_button_style),

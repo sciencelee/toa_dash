@@ -25,7 +25,7 @@ def top_state_stat(df, state, col, top=1):
     if len(text)==1:
         ties = df[(df[col]==top_df[col].max()) & (df['state_prov']==state)]
         tie = len(ties.team.unique())
-        teams = list(ties.team.unique())
+        teams = list(ties.team.astype(int).unique())
         if tie > 1:
             text = ['{}pts - {} way tie {}'.format(top_df[col].max(), tie, teams)]
 
