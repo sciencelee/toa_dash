@@ -104,6 +104,13 @@ first_map.update_layout(
 )
 
 
+# just to give color to selected button
+white_button_style = {'background-color': 'white',
+                      'color': 'black',}
+
+gray_button_style = {'background-color': 'gray',
+                    'color': 'white'}
+
 
 # BUILD A LAYOUT
 app.layout = html.Div(
@@ -112,9 +119,9 @@ app.layout = html.Div(
         html.Div(id='country-value', style={'display': 'none'}, children='USA'),  # place to store my state value
 
         html.Div([
-            html.Button('International', id='country', n_clicks=0),
-            html.Button('Teams by State', id='state', n_clicks=0),
-            html.Button('Teams by City', id='city', n_clicks=0)]
+            html.Button('International', id='country', n_clicks=0, style=white_button_style),
+            html.Button('Teams by State', id='state', n_clicks=0, style=gray_button_style),
+            html.Button('Teams by City', id='city', n_clicks=0, style=white_button_style), ]
             ),
         html.Div([   # Big middle block split in two
             html.Div([  # This is my left half div
@@ -135,6 +142,9 @@ app.layout = html.Div(
 #THIS IS A CALLBACK TO CHANGE MAP TYPE USING BUTTONS
 @app.callback(
     Output('map', 'children'),  # output goes to id:map and attribute:figure (which is my fig map)
+     Output('country', 'style'),
+     Output('state', 'style'),
+     Output('city', 'style'),
     [Input('country', 'n_clicks'),
      Input('city', 'n_clicks'),
      Input('state', 'n_clicks'),]
@@ -178,7 +188,8 @@ def change_map(bt1, bt2, bt3):
 
         )
 
-        return html.Div(dcc.Graph(figure=fig, id='mappy', style={"height": 500}))
+        return html.Div(dcc.Graph(figure=fig, id='mappy', style={"height": 500})), \
+               white_button_style, white_button_style, gray_button_style
 
 
     elif 'country' in changed_id:
@@ -214,7 +225,8 @@ def change_map(bt1, bt2, bt3):
             margin={"r": 0, "t": 0, "l": 0, "b": 0}
         )
 
-        return html.Div(dcc.Graph(figure=fig, id='mappy', style={"height": 500}))
+        return html.Div(dcc.Graph(figure=fig, id='mappy', style={"height": 500})), \
+               gray_button_style, white_button_style, white_button_style
 
     #elif 'state' in changed_id:
     else:
@@ -241,7 +253,8 @@ def change_map(bt1, bt2, bt3):
             coloraxis_colorbar=dict(title="Active Teams"),
             dragmode=False,
         )
-        return html.Div(dcc.Graph(figure=fig, id='mappy', style={"height": 500}))
+        return html.Div(dcc.Graph(figure=fig, id='mappy', style={"height": 500})), \
+               white_button_style, gray_button_style, white_button_style
 
 
 
