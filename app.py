@@ -209,7 +209,7 @@ def change_map(bt1, bt2, bt3):
                             custom_data=['country'],
                             # hover_name='team_key',
                             # hover_data={'team_key':True,},
-                            color_continuous_scale='Plasma',
+                            color_continuous_scale='Plotly3',
                             # scope="world"
                             range_color=(0, 100),
                             )
