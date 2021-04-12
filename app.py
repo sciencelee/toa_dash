@@ -113,6 +113,8 @@ gray_button_style = {'background-color': 'gray',
 
 
 # BUILD A LAYOUT
+app.title = 'FTC Maps'
+
 app.layout = html.Div(
     [  # one big div for page
         html.Div(id='state-value', style={'display': 'none'}, children='IL'), # place to store my state value
