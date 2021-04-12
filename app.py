@@ -185,7 +185,6 @@ def change_map(bt1, bt2, bt3):
                 scope='usa',
                 landcolor='rgb(150, 150, 150)',
             ),
-            dragmode=False,
             margin={"r": 0, "t": 0, "l": 0, "b": 0},
 
         )
