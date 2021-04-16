@@ -66,6 +66,7 @@ matches = matches[~matches['event_key'].isin(['2021-NYEXC-NFERS',
                                               '2021-FL-FFALS',
                                               '2021-CA-SFSR2', # bad auto score
                                               ])]
+
 matches['team'] = matches['match_key'].apply(lambda x: x[x.rfind('-')+1:])
 
 

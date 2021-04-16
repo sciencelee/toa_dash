@@ -276,6 +276,7 @@ def write_state(clickData):
 @app.callback(Output('stats', 'children'),  # output goes to stats display
                 Input('state-value', 'children'))  # need the state in order to do calculations
 def display_stats(state):
+    print(matches.columns)
     top10 = top_state_stat(matches, state, 'red_score', top=5)
     auto = top_state_stat(matches, state, 'red_auto_score',)
     tele = top_state_stat(matches, state, 'red_tele_score')
