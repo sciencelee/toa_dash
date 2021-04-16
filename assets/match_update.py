@@ -10,6 +10,11 @@ import json
 import pandas as pd
 import os
 
+from dotenv import load_dotenv
+
+load_dotenv()  # take environment variables from .env.
+
+
 # pull my key from environment vars
 api_key = str(os.environ.get("SECRET"))
 season = 2021
