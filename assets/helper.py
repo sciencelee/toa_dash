@@ -11,8 +11,10 @@ def top_state_stat(df, state, col, top=1):
     #print('/{}/'.format(state))
     #print(df['state_prov'].unique())
     if state not in df['country'].unique():
+        country = False
         top_df = df[df['state_prov']==state].sort_values(col, ascending=False)[['team', 'team_name', 'city', 'state_prov', 'country', col]][:top]
     else:
+        country = True
         top_df = df[df['country']==state].sort_values(col, ascending=False)[['team', 'team_name', 'city', 'state_prov', 'country', col]][:top]
 
     text = format_me(top_df, col)
@@ -23,7 +25,10 @@ def top_state_stat(df, state, col, top=1):
             text.append('')
 
     if len(text)==1:
-        ties = df[(df[col]==top_df[col].max()) & (df['state_prov']==state)]
+        if country:
+            ties = df[(df[col]==top_df[col].max()) & (df['country']==state)]
+        else:
+            ties = df[(df[col]==top_df[col].max()) & (df['state_prov']==state)]
         tie = len(ties.team.unique())
         teams = list(ties.team.astype(int).unique())
         if tie > 1:
