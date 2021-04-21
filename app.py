@@ -234,6 +234,10 @@ def change_map(bt1, bt2, bt3):
         plot_active = active_teams.groupby(['country', 'state_prov']).count()[['team_key', 'zip_code', 'team_name_short']].reset_index()
         plot_active['State'] = plot_active['state_prov']
         plot_active['total_teams'] = plot_active['team_key']
+        plot_active = plot_active[plot_active['country']=='USA']
+
+        pd.options.display.max_rows = 999
+
         fig = px.choropleth(data_frame=plot_active,
                             locations='State',
                             locationmode="USA-states",
