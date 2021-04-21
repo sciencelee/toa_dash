@@ -11,7 +11,6 @@ import pandas as pd
 import os
 
 # from dotenv import load_dotenv
-#
 # load_dotenv()  # take environment variables from .env.
 
 
@@ -153,14 +152,19 @@ for i in range(0, n, 500):
 
 matches = matches[~matches['event_key'].isin(['2021-NYEXC-NFERS', '2021-NJ-NFCWL2', '2021-AZ-AFCCS'])]
 matches['team'] = matches['match_key'].apply(lambda x: x[x.rfind('-')+1:])
+print('added team column')
 
 # this is a lookup, and will likely take a while
 matches['team_info'] = matches['team'].apply(lambda x: active_teams[active_teams['team_number']==int(x)][['team_name_short', 'city', 'state_prov', 'country']].mode().values[0])
+print('added team info column')
+
 
 matches['team_name'] = matches['team_info'].apply(lambda x: x[0])
 matches['city'] = matches['team_info'].apply(lambda x: x[1])
 matches['state_prov'] = matches['team_info'].apply(lambda x: x[2])
 matches['country'] = matches['team_info'].apply(lambda x: x[3])
+print('extracted team info')
+
 
 # save it to file
 matches.to_csv('matches.csv')
