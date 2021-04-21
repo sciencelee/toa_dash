@@ -10,8 +10,8 @@ import json
 import pandas as pd
 import os
 
-# from dotenv import load_dotenv
-# load_dotenv()  # take environment variables from .env.
+from dotenv import load_dotenv
+load_dotenv()  # take environment variables from .env.
 
 
 # pull my key from environment vars
@@ -150,7 +150,10 @@ for i in range(0, n, 500):
     time.sleep(3)  # sleep to avoid imposed limit
     print(i)
 
-matches = matches[~matches['event_key'].isin(['2021-NYEXC-NFERS', '2021-NJ-NFCWL2', '2021-AZ-AFCCS'])]
+matches = matches[~matches['event_key'].isin(['2021-NYEXC-NFERS',
+                                              '2021-NJ-NFCWL2',
+                                              '2021-AZ-AFCCS',
+                                              '2021-CA-CFPSR'])]
 matches['team'] = matches['match_key'].apply(lambda x: x[x.rfind('-')+1:])
 print('added team column')
 
