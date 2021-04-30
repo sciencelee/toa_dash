@@ -74,7 +74,11 @@ plot_me['Total Teams'] = plot_me['team_key']
 
 # CREATE MY APP
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']  # default styling from tutorials
-app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
+app = dash.Dash(__name__,
+                external_stylesheets=external_stylesheets,
+                meta_tags=[{"name": "viewport", "content": "width=device-width, initial-scale=1"}]
+                )
+
 server = app.server
 
 
