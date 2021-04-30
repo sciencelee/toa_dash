@@ -62,9 +62,19 @@ matches = pd.read_csv('assets/matches.csv')
 
 matches = matches[~matches['event_key'].isin(['2021-NYEXC-NFERS',
                                               '2021-NJ-NFCWL2',
+                                              '2021-NJ-NFNLP',
                                               '2021-AZ-AFCCS',
                                               '2021-FL-FFALS',
                                               '2021-CA-SFSR2', # bad auto score
+                                              '2021-MA-MFDSR',
+                                                '2021-MA-MFDSR1',
+                                              '2021-MA-MFDPS',
+                                              '2021-MA-MFJSR',
+                                              '2021-MA-MFJSR1',
+                                                '2021-MA-MFJSR3',
+                                              '2021-MA-MFFSR1',
+
+
                                               ])]
 
 matches['team'] = matches['match_key'].apply(lambda x: x[x.rfind('-')+1:])
