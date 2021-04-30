@@ -73,9 +73,12 @@ matches = matches[~matches['event_key'].isin(['2021-NYEXC-NFERS',
                                               '2021-MA-MFJSR1',
                                                 '2021-MA-MFJSR3',
                                               '2021-MA-MFFSR1',
-
-
+                                              '2021-FL-FFSFL3',
                                               ])]
+
+matches = matches[~matches['team'].isin(['1',
+                                         ])]
+
 
 matches['team'] = matches['match_key'].apply(lambda x: x[x.rfind('-')+1:])
 
