@@ -73,11 +73,15 @@ plot_me['Total Teams'] = plot_me['team_key']
 
 
 # CREATE MY APP
-external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']  # default styling from tutorials
+#external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']  # default styling from tutorials
+external_stylesheets = ['https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css',
+                        'https://codepen.io/chriddyp/pen/bWLwgP.css']  # default styling from tutorials
+
 app = dash.Dash(__name__,
                 external_stylesheets=external_stylesheets,
                 meta_tags=[{"name": "viewport", "content": "width=device-width, initial-scale=1"}]
                 )
+
 
 server = app.server
 
@@ -119,6 +123,9 @@ gray_button_style = {'background-color': 'gray',
 # BUILD A LAYOUT
 app.title = 'FTC Maps'
 
+
+
+
 app.layout = html.Div(
     [  # one big div for page
         html.Div(id='state-value', style={'display': 'none'}, children='IL'), # place to store my state value
@@ -143,6 +150,7 @@ app.layout = html.Div(
                     ),
                 ], className='flex-container', style = {'height': '800'}),
         ], style = {'height': '800'})
+
 
 
 #THIS IS A CALLBACK TO CHANGE MAP TYPE USING BUTTONS
